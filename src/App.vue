@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="width:100vw;">
     <navibar
       :title="title"
     ></navibar>
@@ -36,5 +36,8 @@ export default {
 </script>
 
 <style>
-
+  body {
+    width:100vw;
+    margin: 0;
+  }
 </style>
