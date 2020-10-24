@@ -1,29 +1,40 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld/>
-    <input type="button" value="💩" class="btn btn-primary">
+  <div>
+    <navibar
+      :title="title"
+    ></navibar>
+    <component
+      :is="currentView"
+      @pageMove = "pageMove"
+    />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+import navibar from './components/navibar'
+import login from './components/login'
+import watch from './components/watch'
 
 export default {
-  name: 'App',
   components: {
-    HelloWorld
+    navibar,
+    login,
+    watch
+  },
+  data () {
+    return {
+      title: 'ログイン',
+      currentView: 'login'
+    }
+  },
+  methods: {
+    pageMove (target) {
+      this.currentView = target
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
