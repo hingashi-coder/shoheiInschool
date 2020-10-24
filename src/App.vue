@@ -1,12 +1,14 @@
 <template>
   <div style="width:100vw;">
-    <navibar
+    <navibar v-if="currentView != 'login'"
       :title="title"
     ></navibar>
+    <transition>
     <component
       :is="currentView"
       @pageMove = "pageMove"
     />
+    </transition>
   </div>
 </template>
 
