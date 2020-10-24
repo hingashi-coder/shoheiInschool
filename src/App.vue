@@ -2,9 +2,7 @@
   <div id="app">
     <img src="./assets/logo.png">
     <HelloWorld/>
-    <b-button
-      variant="primary"
-    >test</b-button>
+    <input type="button" value="💩" class="btn btn-primary">
   </div>
 </template>
 
