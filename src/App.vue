@@ -2,6 +2,9 @@
   <div id="app">
     <img src="./assets/logo.png">
     <HelloWorld/>
+    <b-button
+      variant="primary"
+    >test</b-button>
   </div>
 </template>
 
