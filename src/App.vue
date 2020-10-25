@@ -1,8 +1,5 @@
 <template>
   <div style="width:100vw;">
-    <navibar v-if="currentView != 'login'"
-      :title="title"
-    ></navibar>
     <transition>
     <component
       :is="currentView"
