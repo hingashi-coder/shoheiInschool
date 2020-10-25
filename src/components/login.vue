@@ -5,16 +5,20 @@
       <div class="wrap-login100">
         <form class="login100-form validate-form">
           <span class="login100-form-title p-b-34 p-t-27">
-            Log in
+            ログイン
           </span>
           <div class="wrap-input100 validate-input"  data-validate="Enter password">
             <input class="input100" type="password"  placeholder="Password" v-model="request">
             <span class="focus-input100" data-placeholder="🔒"></span>
           </div>
-
+          <transition>
+            <div class="my-3 text-light text-center" v-if="error.length > 0">
+              {{error}}
+            </div>
+          </transition>
           <div class="container-login100-form-btn">
             <button type="button" class="login100-form-btn" @click="login">
-              Login
+              ログイン
             </button>
           </div>
         </form>
@@ -25,22 +29,26 @@
 </template>
 
 <script>
-const pass = 'test'
+import crypto from 'crypto'
 export default {
   data () {
     return {
       request: '',
       style: {
         'background-image': 'url(' + require('@/assets/bg-01.jpg') + ')'
-      }
+      },
+      error: ''
     }
   },
   methods: {
     login () {
-      if (this.request === pass) {
+      const pass = process.env.PASSWORD
+      const hash = crypto.createHash('sha256').update(this.request, 'utf8').digest('hex')
+      console.log(pass)
+      if (hash === pass) {
         this.$emit('pageMove', 'watch')
       } else {
-        alert('NG')
+        this.error = 'パスワードが間違っています。'
       }
     }
   }
