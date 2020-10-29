@@ -30,6 +30,7 @@
 
 <script>
 import crypto from 'crypto'
+import { parse } from 'querystring'
 export default {
   data () {
     return {
@@ -38,6 +39,14 @@ export default {
         'background-image': 'url(' + require('@/assets/bg-01.jpg') + ')'
       },
       error: ''
+    }
+  },
+  mounted () {
+    const query = parse(window.location.search.slice(1))
+    const pass = query.auth
+    if (pass !== void (0)) {
+      this.request = pass
+      this.login()
     }
   },
   methods: {
